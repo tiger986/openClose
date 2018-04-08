@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 300px;
+            margin: 100px auto 0;
+            padding: 15px;
+            border: 1px solid #E5E5E5;
+        }
+        .box_title{
+            font-size: 16px;
+            color: #333333;
+            line-height: 16px;
+        }
+        .box_con{
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0 0;
+        }
+        .box_con_textBox{
+            width: 100%;
+            max-height: 188px;
+            overflow: hidden;
+        }
+        .box_con_text{
+            width: 100%;
+            font-size: 14px;
+            color: #666666;
+            line-height: 24px;
+        }
+        .box_con_textNo{
+            width: 100%;
+            height: 188px;
+            font-size: 16px;
+            color: #666666;
+            line-height: 180px;
+            text-align: center;
+        }
+        .box_con_btn{
+            height: 36px;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #FF971B;
+            line-height: 36px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .readall_box{
+            position: relative;
+            z-index: 9999;
+            margin-top: -100px;
+            text-align: center;
+        }
+        .read_more_mask{
+            height: 100px;
+            background: -moz-linear-gradient(bottom,rgba(255,255,255,.1),rgba(255,255,255,0));
+            background: -webkit-gradient(linear,0 top,0 bottom,from(rgba(255,255,255,0)),to(#fff));
+            background: -o-linear-gradient(bottom,rgba(255,255,255,.1),rgba(255,255,255,0));
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+    <script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+    <div class="box">
+        <div class="box_title">课程介绍</div>
+        <div class="box_con">
+            <div class="box_con_textBox">
+                <div class="box_con_text"></div>
+                <div class="box_con_textNo hide">暂无课程描述</div>
+            </div>
+        </div>
+        <div class="readall_box csdn-tracking-statistics tracking-click hide">
+            <div class="read_more_mask openMask"></div>
+            <div class="read_more_mask closeMask hide" style="background: transparent"></div>
+            <div class="box_con_btn open">查看全部</div>
+            <div class="box_con_btn close hide">收起</div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function(){
+        var text = "并行执行多个函数，每个函数都是立即执行，不需要等待其它函数先执行。传给最终callback的数组中的数据按照tasks中声明的顺序，而不是执行完成的顺序。如果某个函数出错，则立刻将err和已经执行完的函数的结果值传给parallel最终的callback。其它未执行完的函数的值不会传到最终数据，但要占个位置。" +
+            "并行执行多个函数，每个函数都是立即执行，不需要等待其它函数先执行。传给最终callback的数组中的数据按照tasks中声明的顺序，而不是执行完成的顺序。如果某个函数出错，则立刻将err和已经执行完的函数的结果值传给parallel最终的callback。其它未执行完的函数的值不会传到最终数据，但要占个位置。";
+        $(".box_con_text").html(text);
+        if(!text){
+            $(".box_con_textNo").show();
+        }else{
+            if($(".box_con_text").height() > $(".box_con_textBox").height()){
+                $(".readall_box").show();
+            }
+        }
+        $(".open").click(function(){
+            $(".box_con_textBox").animate({maxHeight: $(".box_con_text").height() + "px"}, "fast");
+            $(this).hide();
+            $(".close").show();
+            $(".openMask").hide();
+            $(".closeMask").show();
+        });
+        $(".close").click(function(){
+            $(".box_con_textBox").animate({maxHeight: 188 + "px"}, "fast");
+            $(this).hide();
+            $(".open").show();
+            $(".openMask").show();
+            $(".closeMask").hide();
+        });
+    });
+</script>
